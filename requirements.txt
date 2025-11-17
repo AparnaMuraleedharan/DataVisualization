@@ -1,0 +1,11 @@
+streamlit
+pandas
+numpy
+plotly
+pyyaml
+seaborn
+matplotlib
+statsmodels
+pillow
+st-aggrid
+python-dateutil
