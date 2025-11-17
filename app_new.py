@@ -54,7 +54,7 @@ def main():
     )
 
     # Show P&ID if exists
-    pid = "/var/www/html/data/for5359b2/PID.png"
+    pid = "PID.png"
     if os.path.isfile(pid):
         st.subheader("P&ID of the mini-plant")
 
@@ -103,7 +103,7 @@ def main():
         "OME": "ScenarioC_Reactive_OME"
     }
     mix = st.radio("Mixture:", list(mixture_to_folder.keys()), index=0)
-    base = "/var/www/html/data/for5359b2/"
+    base = "ContinuousDistillationData"
     scenario_folder = os.path.join(base, mixture_to_folder[mix])
     if not os.path.isdir(scenario_folder):
         st.error(f"Folder not found: {scenario_folder}")
