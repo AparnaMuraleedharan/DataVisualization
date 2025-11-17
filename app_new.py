@@ -221,19 +221,25 @@ def main():
         df2 = df.sort_values("Time").copy()
         # Ensure Time column is datetime
         df2["Time"] = pd.to_datetime(df2["Time"], errors="coerce")
+        dr = None
         if df2["Time"].notna().any():
             mn, mx = df2["Time"].min(), df2["Time"].max()
-            if mn < mx:
+            if pd.notna(mn) and pd.notna(mx) and mn < mx:
+                # Convert pandas Timestamps to Python datetime for Streamlit
+                mn_py = mn.to_pydatetime()
+                mx_py = mx.to_pydatetime()
+
                 dr = st.slider(
                     "Time range:",
-                    min_value=mn,
-                    max_value=mx,
-                    value=(mn, mx),
+                    min_value=mn_py,
+                    max_value=mx_py,
+                    value=(mn_py, mx_py),
                     format="YYYY-MM-DD HH:mm:ss",
                 )
-                df2 = df2[df2["Time"].between(dr[0], dr[1])]
-        else:
-            st.warning("All time values became NaT after parsing – cannot create time slider.")
+
+        # Apply filter only if slider was created
+        if dr is not None:
+            df2 = df2[df2["Time"].between(dr[0], dr[1])]
             nums = [c for c in df2.columns if pd.api.types.is_numeric_dtype(df2[c]) and c != "Label (common/all)"]
             default = ["T101"] if "T101" in nums else []
             cols = st.multiselect("Columns to plot:", nums, default=default)
