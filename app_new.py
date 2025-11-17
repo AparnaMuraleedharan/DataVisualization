@@ -201,21 +201,24 @@ def main():
             sortable=True,
             floatingFilter=True,
             resizable=True,
-            min_width=120,
+            minWidth=120,
         )
+        if "Time" in df.columns:
+            gb.configure_column("Time", pinned="left")
+
         gb.configure_pagination(paginationPageSize=15)
+
         grid = gb.build()
 
         AgGrid(
             df,
             gridOptions=grid,
             data_return_mode=DataReturnMode.AS_INPUT,
-            update_mode=GridUpdateMode.MODEL_CHANGED,
+            update_mode=GridUpdateMode.NO_UPDATE,
             enable_enterprise_modules=True,
-            fit_columns_on_grid_load=True,
             height=400,
+            fit_columns_on_grid_load=False,  # don’t squeeze everything to fit
         )
-
 
         # Time-series plotting
         df2 = df.sort_values("Time").copy()
