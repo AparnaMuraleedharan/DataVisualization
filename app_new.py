@@ -194,35 +194,46 @@ def main():
         st.subheader("Data Preview:")
         for c in df.select_dtypes(include="bool"):
             df[c] = df[c].astype(str)
+
         gb = GridOptionsBuilder.from_dataframe(df)
-        gb.configure_default_column(filterable=True, sortable=True, floatingFilter=True)
-        gb.configure_pagination(paginationPageSize=10)
+        gb.configure_default_column(
+            filterable=True,
+            sortable=True,
+            floatingFilter=True,
+            resizable=True,
+            min_width=120,
+        )
+        gb.configure_pagination(paginationPageSize=15)
         grid = gb.build()
+
         AgGrid(
             df,
             gridOptions=grid,
             data_return_mode=DataReturnMode.AS_INPUT,
             update_mode=GridUpdateMode.MODEL_CHANGED,
-            enable_enterprise_modules=True
+            enable_enterprise_modules=True,
+            fit_columns_on_grid_load=True,
+            height=400,
         )
 
+
         # Time-series plotting
-        df2 = df.sort_values("Time")
+        df2 = df.sort_values("Time").copy()
         # Ensure Time column is datetime
         df2["Time"] = pd.to_datetime(df2["Time"], errors="coerce")
-        if not df2["Time"].isna().all():
+        if df2["Time"].notna().any():
             mn, mx = df2["Time"].min(), df2["Time"].max()
-            if not df2["Time"].isna().all():
-                mn, mx = df2["Time"].min(), df2["Time"].max()
-                if pd.notna(mn) and pd.notna(mx) and mn < mx:
-                    dr = st.slider(
-                        "Time range:",
-                        mn,
-                        mx,
-                        (mn,mx),
-                        format="YYYY-MM-DD HH:mm:ss"
-                    )
-                df2 = df2[(df2["Time"] >= dr[0]) & (df2["Time"] <= dr[1])]
+            if mn < mx:
+                dr = st.slider(
+                    "Time range:",
+                    min_value=mn,
+                    max_value=mx,
+                    value=(mn, mx),
+                    format="YYYY-MM-DD HH:mm:ss",
+                )
+                df2 = df2[df2["Time"].between(dr[0], dr[1])]
+        else:
+            st.warning("All time values became NaT after parsing – cannot create time slider.")
             nums = [c for c in df2.columns if pd.api.types.is_numeric_dtype(df2[c]) and c != "Label (common/all)"]
             default = ["T101"] if "T101" in nums else []
             cols = st.multiselect("Columns to plot:", nums, default=default)
