@@ -1,0 +1,22 @@
+SensorName,Description
+T101,Temperature Sensor in Column 1
+T102,Temperature Sensor in Column 1
+T104,Temperature Sensor in Column 1
+T106,Temperature Sensor in Column 1
+T108,Temperature Sensor in Column 1
+T110,Temperature Sensor in Column 1
+T112,Temperature Sensor in Column 1
+T114,Temperature Sensor in Column 1
+T115,Bottom Product Temperature Sensor in Column 1
+T116,Temperature Sensor of Feed
+PD101,Differential Pressure Sensor in Reboiler
+PD102,Differential Pressure Sensor in Reboiler
+PD103,Differential Pressure Sensor in Distillate Holdup Tank
+PIC101,Head Pressure Sensor
+A102,Distillate Product Tank
+M102,Distillate Flow Rate
+A103,Bottom Product Tank
+M103,Bottom Product Flow Rate
+R,Reflux Ratio
+Time,Time in HH:MM:SS
+DateTime,DateTime in DD/MM/YYYY HH:MM:SS for experiments that run overnight and over multiple days

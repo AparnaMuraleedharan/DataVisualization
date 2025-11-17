@@ -1,0 +1,40 @@
+Feed in kg/h: 7
+Pressure: 1396.36
+Feed Temperature in °C: 91.83
+Feed composition in mass fraction OME: OME1-0.1376, OME2-0.0728, OME3-0.0061, OME4-0
+  OME5-0, OME6-0
+Feed composition in mass fraction Methyl formate, Methanol, Formaldehyde, Water: MeFo-0.0003
+  MeOH- 0.0765, FA-0.2458, WA-0.0305
+Reflux Ratio: 0.5
+Bottom Flow Rate: 0.25
+anomalies:
+  - class: ConfirmedAnomaly
+    id: SCC-OME-OP004TA001A001
+    hasBeginning: '15:46:00'
+    hasEnd: '17:28:00'
+    hasCategory: transient
+    hasRecoveryAction: System automatically recovers
+    Perturbation: null
+    PerturbationMode:
+      label: Temperature sensor unstable
+      hasBeginning: null
+      hasEnd: null
+      happenedAt:
+        System:
+          label: Temperature sensor
+          id: T106
+          hasFunction: Temperature sensor in column 1 section C103
+          hasNormalState: automatic, closed-loop controlled
+          hasAnomalousState: automatic, closed-loop controlled
+    wasOriginatedBy:
+      Observation:
+        id: Observation001_SCC-OME-OP004TA001A001
+        label: Temperature sensor drop
+        madeBySensor:
+          Sensor:
+            id: T106
+        observedProperty:
+          ObservableProperty: Temperature sensor in column 1 section C103
+        hasFeatureOfInterest:
+          FeatureOfInterest: Column 1  mid sections
+

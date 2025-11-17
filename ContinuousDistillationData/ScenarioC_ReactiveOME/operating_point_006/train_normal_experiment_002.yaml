@@ -1,0 +1,10 @@
+Feed in kg/h: '7.5'
+Pressure: '1407.41'
+Feed Temperature in °C: '86.10'
+Feed Composition Mass Fraction OME: OME1-0.4088 OME2-0.1788 OME3-0.0515 OME4-0.0139
+  OME4-0.0036 OME5-0.0000 OME6-0.0000
+Feed Composition Mass Fraction Methyl formate, trioxan, methanol, formaldehyde and warer: Mefo-0.0000
+  Trioxan-0 MeOh-0.0984 FA-0.1857 WA-0.0588
+Reflux Ratio: '0.5'
+Bottom Flow Rate: '0.62'
+AnomalyReasons: No anomaly

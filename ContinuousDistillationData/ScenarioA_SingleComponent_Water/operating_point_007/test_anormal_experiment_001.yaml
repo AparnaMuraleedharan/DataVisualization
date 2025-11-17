@@ -1,0 +1,37 @@
+Head Pressure: 1400 mbar
+Feed Flow Rate: 5 kg/hr
+Reflux Ratio: 0.5, 0.8
+anomalies:
+  - class: ConfirmedAnomaly
+    id: SCA-WA-OP007TA001A001
+    hasBeginning: '16:48:00'
+    hasEnd: '17:20:00'
+    hasCategory: transient
+    hasRecoveryAction: Not available, system automatically recovered
+    Perturbation: null
+    PerturbationMode:
+      label: Unreliable noisy sensor output
+      hasBeginning: null
+      hasEnd: null
+      happenedAt:
+        System:
+          label: Temperature sensor in column 1
+          id: T108, T110, T112, T114
+          hasFunction: Measure temperature at different locations within the column
+          hasNormalState: automatic, closed-loop controlled
+          hasAnomalousState: automatic, closed-loop controlled
+      hasLocalEffect:
+        LocalEffect:
+          label: Decreasing temperature inside the column
+    wasOriginatedBy:
+      Observation:
+        id: Observation001_SCA-WA-OP007TA001A001
+        label: Temperature sensors in the upper half of the column have temperature fall
+        madeBySensor:
+          Sensor:
+            id: T108, T110, T112, T114
+        observedProperty:
+          ObservableProperty: Column temperatures
+        hasFeatureOfInterest:
+          FeatureOfInterest: Column 1 top sections
+

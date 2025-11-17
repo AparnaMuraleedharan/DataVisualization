@@ -1,0 +1,41 @@
+SensorName,Description
+T101,Temperature Sensor in Column 1
+T102,Temperature Sensor in Column 1
+T104,Temperature Sensor in Column 1
+T106,Temperature Sensor in Column 1
+T108,Temperature Sensor in Column 1
+T110,Temperature Sensor in Column 1
+T112,Temperature Sensor in Column 1
+T114,Temperature Sensor in Column 1
+T116,Temperature Sensor of Feed
+PDIC101,Differential Pressure Sensor in Reboiler
+PDIC102,Differential Pressure Sensor in Reboiler
+PIC101,Head Pressure Sensor C1
+A104,Decanter Tank Mass
+M104,Decanter Net Flow Rate
+A101,Feed Tank Mass
+M101,Feed Flow Rate
+A103,Bottoms Product C1 Tank Mass
+A106,Decanter Upper Phase Tank Mass
+A107,Decanter Lower Phase Tank Mass
+M107,Decanter Lower Phase Net Flow Rate
+M103,Bottoms Product C1 Flow Rate
+M106,Decanter Upper Phase Net Flow Rate
+T201,Temperature Sensor in Column 2
+T202,Temperature Sensor in Column 2
+T204,Temperature Sensor in Column 2
+T206,Temperature Sensor in Column 2
+T208,Temperature Sensor in Column 2
+T210,Temperature Sensor in Column 2
+T212,Temperature Sensor in Column 2
+PDIC201,Differential Pressure Sensor in C1 Reboiler
+PDIC202,Differential Pressure Sensor in C1 Reboiler
+PIC201,Head Pressure Sensor C2
+A203,Bottoms Product C2 Tank Mass
+M203,Bottoms Product C2 Flow Rate
+F101,Flow Meter Decanter Lower Phase
+F102,Flow Meter Distillate C1
+F103,Flow Meter Distillate C2
+F104,Flow Meter Feed C1
+R,Reflux Ratio
+Time,Time in HH:MM:SS
