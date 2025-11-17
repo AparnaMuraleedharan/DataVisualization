@@ -1,3 +1,6 @@
+Head Pressure: 1250 mbar
+Feed Flow Rate: 5 kg/hr
+Reflux Ratio: 0.5
 anomalies:
   - class: ConfirmedAnomaly
     id: SCA-WA-OP003TA001A001
@@ -223,4 +226,5 @@ anomalies:
           ObservableProperty: Condenser temperature
         hasFeatureOfInterest:
           FeatureOfInterest: Condenser
+
 
