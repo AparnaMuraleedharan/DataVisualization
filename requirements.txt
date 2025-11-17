@@ -7,5 +7,6 @@ seaborn
 matplotlib
 statsmodels
 pillow
-st-aggrid
+streamlit-aggrid
 python-dateutil
+
