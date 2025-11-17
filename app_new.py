@@ -208,14 +208,20 @@ def main():
 
         # Time-series plotting
         df2 = df.sort_values("Time")
+        # Ensure Time column is datetime
+        df2["Time"] = pd.to_datetime(df2["Time"], errors="coerce")
         if not df2["Time"].isna().all():
             mn, mx = df2["Time"].min(), df2["Time"].max()
-            if mn < mx:
-                dr = st.slider(
-                    "Time range:", mn.to_pydatetime(), mx.to_pydatetime(),
-                    (mn.to_pydatetime(), mx.to_pydatetime()),
-                    format="YYYY-MM-DD HH:mm:ss"
-                )
+            if not df2["Time"].isna().all():
+                mn, mx = df2["Time"].min(), df2["Time"].max()
+                if pd.notna(mn) and pd.notna(mx) and mn < mx:
+                    dr = st.slider(
+                        "Time range:",
+                        mn,
+                        mx,
+                        (mn,mx),
+                        format="YYYY-MM-DD HH:mm:ss"
+                    )
                 df2 = df2[(df2["Time"] >= dr[0]) & (df2["Time"] <= dr[1])]
             nums = [c for c in df2.columns if pd.api.types.is_numeric_dtype(df2[c]) and c != "Label (common/all)"]
             default = ["T101"] if "T101" in nums else []
@@ -274,7 +280,7 @@ def main():
         for c in df.select_dtypes(include="bool").columns:
             df[c] = df[c].astype(str)
         gb = GridOptionsBuilder.from_dataframe(df)
-        gb.configure_default_column(filterable=True, sortable=True, floatingFilter=True)
+        gb.configure_default_column(filterable=True, sortable=True, floatingFilter=True, resizeable=True, min_width=120)
         gb.configure_pagination(paginationPageSize=10)
         AgGrid(
             df,
