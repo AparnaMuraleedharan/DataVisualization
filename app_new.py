@@ -317,6 +317,7 @@ def main():
             ]
             default = ["T101"] if "T101" in nums else []
             cols = st.multiselect("Columns to plot:", nums, default=default)
+
             if cols:
                 ptype = st.selectbox(
                     "Plot type:",
@@ -329,9 +330,11 @@ def main():
                         "Seasonality Decomposition",
                     ],
                 )
+
                 ymi, yma = float(df2[cols].min().min()), float(df2[cols].max().max())
                 yr = st.slider("Y-axis range:", ymi - 50, yma + 50, (ymi, yma))
 
+                # ---------- (A) Line Plot ----------
                 if ptype == "Line Plot":
                     fig_ts = px.line(df2, x="Time", y=cols, title="Time Series")
                     fig_ts.update_layout(
@@ -346,26 +349,21 @@ def main():
                     if label_col in df2.columns:
                         df_filtered = df2[["Time", label_col]].copy()
 
-                        # Treat any numeric 1 (including strings like "1" or "1.0") as anomaly
                         is_one = (
-                            pd.to_numeric(
-                                df_filtered[label_col], errors="coerce"
-                            )
+                            pd.to_numeric(df_filtered[label_col], errors="coerce")
                             .fillna(0)
                             .astype(int)
                             == 1
                         )
                         df_filtered["is_anomaly"] = is_one
-                        df_filtered["prev_anomaly"] = df_filtered[
-                            "is_anomaly"
-                        ].shift(1, fill_value=False)
+                        df_filtered["prev_anomaly"] = df_filtered["is_anomaly"].shift(
+                            1, fill_value=False
+                        )
                         df_filtered["start_of_block"] = (
-                            df_filtered["is_anomaly"]
-                            & ~df_filtered["prev_anomaly"]
+                            df_filtered["is_anomaly"] & ~df_filtered["prev_anomaly"]
                         )
                         df_filtered["end_of_block"] = (
-                            ~df_filtered["is_anomaly"]
-                            & df_filtered["prev_anomaly"]
+                            ~df_filtered["is_anomaly"] & df_filtered["prev_anomaly"]
                         )
 
                         start_times = df_filtered.loc[
@@ -375,10 +373,7 @@ def main():
                             df_filtered["end_of_block"], "Time"
                         ].tolist()
 
-                        # If the last row is still anomalous, extend to the last timestamp
-                        if len(df_filtered) > 0 and df_filtered[
-                            "is_anomaly"
-                        ].iloc[-1]:
+                        if len(df_filtered) > 0 and df_filtered["is_anomaly"].iloc[-1]:
                             end_times.append(df_filtered["Time"].iloc[-1])
 
                         for s, e in zip(start_times, end_times):
@@ -390,7 +385,6 @@ def main():
                                 line_width=0,
                             )
 
-                        # Legend entry for the shaded regions
                         anomaly_trace = Scatter(
                             x=[None],
                             y=[None],
@@ -405,70 +399,116 @@ def main():
 
                     st.plotly_chart(fig_ts, use_container_width=True)
 
-                                # (B) Rolling Average
-                elif plot_type == "Rolling Average":
-                    for col in columns_to_plot:
-                        roll_col_name = f'{col}_rolling'
-                        df_filtered[roll_col_name] = df_filtered[col].rolling(window=10).mean()
+                # ---------- (B) Rolling Average ----------
+                elif ptype == "Rolling Average":
+                    window = st.number_input(
+                        "Rolling window size",
+                        min_value=2,
+                        max_value=500,
+                        value=10,
+                        step=1,
+                    )
+                    df_roll = df2[["Time"] + cols].copy()
+                    roll_cols = []
+                    for c in cols:
+                        rc = f"{c}_rolling"
+                        df_roll[rc] = df_roll[c].rolling(window=window).mean()
+                        roll_cols.append(rc)
 
-                        fig = px.line(
-                            df_filtered,
-                            x="DateTime",
-                            y=roll_col_name,
-                            title=f'{col} Rolling Average (window=10)'
+                    fig_ra = px.line(
+                        df_roll,
+                        x="Time",
+                        y=roll_cols,
+                        title=f"Rolling Average (window={window})",
+                    )
+                    fig_ra.update_layout(
+                        template="plotly_dark",
+                        xaxis_title="Time",
+                        yaxis_title="Value",
+                    )
+                    fig_ra.update_yaxes(range=yr)
+                    st.plotly_chart(fig_ra, use_container_width=True)
+
+                # ---------- (C) Heatmap ----------
+                elif ptype == "Heatmap":
+                    if len(cols) == 0:
+                        st.warning("Select at least one column.")
+                    else:
+                        col0 = cols[0]
+                        df_hm = df2[["Time", col0]].dropna().copy()
+                        df_hm["hour"] = df_hm["Time"].dt.hour
+                        df_hm["day"] = df_hm["Time"].dt.dayofweek
+                        pivot = df_hm.pivot_table(
+                            values=col0, index="day", columns="hour", aggfunc="mean"
                         )
-                        fig.update_layout(template="plotly_dark")
-                        fig.update_yaxes(range=[y_range[0], y_range[1]])
-                        st.plotly_chart(fig, use_container_width=True)
 
-                # (C) Heatmap
-                elif plot_type == "Heatmap":
-                    # Example uses 'T101' specifically; adapt to your needs
-                    if "DateTime" in df_filtered.columns and "T101" in df_filtered.columns:
-                        df_filtered['hour'] = df_filtered['DateTime'].dt.hour
-                        df_filtered['day'] = df_filtered['DateTime'].dt.dayofweek
-                        df_pivot = df_filtered.pivot_table(values='T101', index='day', columns='hour')
-                        plt.figure(figsize=(8, 4), dpi=100)
-                        sns.heatmap(df_pivot, cmap='coolwarm', annot=True, fmt='.2f',
-                                    annot_kws={"size": 6, "color": "black"})
-                        st.pyplot(plt)
+                        fig, ax = plt.subplots(figsize=(8, 4), dpi=100)
+                        sns.heatmap(pivot, ax=ax, cmap="coolwarm")
+                        ax.set_xlabel("Hour of Day")
+                        ax.set_ylabel("Day of Week (0=Mon)")
+                        ax.set_title(f"Heatmap of {col0}")
+                        st.pyplot(fig)
+
+                # ---------- (D) Boxplot ----------
+                elif ptype == "Boxplot":
+                    if len(cols) == 0:
+                        st.warning("Select at least one column.")
                     else:
-                        st.warning("Heatmap requires 'DateTime' and 'T101' columns.")
+                        col0 = cols[0]
+                        df_box = df2[["Time", col0]].dropna().copy()
+                        df_box["day"] = df_box["Time"].dt.dayofweek
 
-                # (D) Boxplot
-                elif plot_type == "Boxplot":
-                    if "DateTime" in df_filtered.columns and "T101" in df_filtered.columns:
-                        df_filtered['day'] = df_filtered['DateTime'].dt.dayofweek
-                        plt.figure(figsize=(8, 4), dpi=100)
-                        sns.boxplot(x='day', y='T101', data=df_filtered)
-                        st.pyplot(plt)
+                        fig, ax = plt.subplots(figsize=(8, 4), dpi=100)
+                        sns.boxplot(data=df_box, x="day", y=col0, ax=ax)
+                        ax.set_xlabel("Day of Week (0=Mon)")
+                        ax.set_ylabel(col0)
+                        ax.set_title(f"Boxplot of {col0} by day of week")
+                        st.pyplot(fig)
+
+                # ---------- (E) Autocorrelation ----------
+                elif ptype == "Autocorrelation":
+                    if len(cols) == 0:
+                        st.warning("Select at least one column.")
                     else:
-                        st.warning("Boxplot requires 'DateTime' and 'T101' columns.")
+                        from statsmodels.graphics.tsaplots import plot_acf
 
-                # (E) Autocorrelation
-                elif plot_type == "Autocorrelation":
-                    from statsmodels.graphics.tsaplots import plot_acf
-                    if "T101" in df_filtered.columns:
-                        plt.figure(figsize=(8, 4), dpi=100)
-                        plot_acf(df_filtered['T101'].dropna(), lags=50)
-                        st.pyplot(plt)
-                    else:
-                        st.warning("Autocorrelation requires 'T101' column.")
-
-                # (F) Seasonality Decomposition
-                elif plot_type == "Seasonality Decomposition":
-                    from statsmodels.tsa.seasonal import seasonal_decompose
-                    if "T101" in df_filtered.columns:
-                        ts_data = df_filtered['T101'].dropna()
-                        if len(ts_data) < 2:
-                            st.warning("Not enough data to perform seasonal decomposition.")
+                        col0 = cols[0]
+                        series = df2[col0].dropna()
+                        if len(series) < 5:
+                            st.warning("Not enough data for autocorrelation.")
                         else:
-                            result = seasonal_decompose(ts_data, model='additive', period=365)
-                            plt.figure(figsize=(8, 4), dpi=100)
-                            result.plot()
-                            st.pyplot(plt)
+                            fig, ax = plt.subplots(figsize=(8, 4), dpi=100)
+                            plot_acf(series, lags=min(50, len(series) - 1), ax=ax)
+                            ax.set_title(f"Autocorrelation of {col0}")
+                            st.pyplot(fig)
+
+                # ---------- (F) Seasonality Decomposition ----------
+                elif ptype == "Seasonality Decomposition":
+                    if len(cols) == 0:
+                        st.warning("Select at least one column.")
                     else:
-                        st.warning("Seasonality Decomposition requires 'T101' column.")
+                        from statsmodels.tsa.seasonal import seasonal_decompose
+
+                        col0 = cols[0]
+                        series = df2[col0].dropna()
+                        period = st.number_input(
+                            "Seasonal period (samples)",
+                            min_value=2,
+                            max_value=2000,
+                            value=50,
+                            step=1,
+                        )
+                        if len(series) < 2 * period:
+                            st.warning(
+                                "Not enough data for seasonal decomposition with this period."
+                            )
+                        else:
+                            res = seasonal_decompose(
+                                series, model="additive", period=period
+                            )
+                            fig = res.plot()
+                            fig.set_size_inches(8, 6)
+                            st.pyplot(fig)
 
     # === Concentration branch ===
     else:
@@ -562,4 +602,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
