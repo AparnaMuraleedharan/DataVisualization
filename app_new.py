@@ -292,8 +292,6 @@ def main():
 
                     st.plotly_chart(fig_ts, use_container_width=True)
 
-                # (Other plot types can be added here as you had them)
-
     # === Concentration branch ===
     else:
         st.subheader("Filtered Data Preview:")
@@ -375,4 +373,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
