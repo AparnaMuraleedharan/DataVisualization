@@ -12,8 +12,6 @@ import os
 import yaml
 import seaborn as sns
 import matplotlib.pyplot as plt
-from statsmodels.tsa.seasonal import seasonal_decompose
-from statsmodels.graphics.tsaplots import plot_acf
 from plotly.graph_objects import Scatter
 
 from PIL import Image
@@ -407,7 +405,70 @@ def main():
 
                     st.plotly_chart(fig_ts, use_container_width=True)
 
-                # (Other plot types can be added here as you had them)
+                                # (B) Rolling Average
+                elif plot_type == "Rolling Average":
+                    for col in columns_to_plot:
+                        roll_col_name = f'{col}_rolling'
+                        df_filtered[roll_col_name] = df_filtered[col].rolling(window=10).mean()
+
+                        fig = px.line(
+                            df_filtered,
+                            x="DateTime",
+                            y=roll_col_name,
+                            title=f'{col} Rolling Average (window=10)'
+                        )
+                        fig.update_layout(template="plotly_dark")
+                        fig.update_yaxes(range=[y_range[0], y_range[1]])
+                        st.plotly_chart(fig, use_container_width=True)
+
+                # (C) Heatmap
+                elif plot_type == "Heatmap":
+                    # Example uses 'T101' specifically; adapt to your needs
+                    if "DateTime" in df_filtered.columns and "T101" in df_filtered.columns:
+                        df_filtered['hour'] = df_filtered['DateTime'].dt.hour
+                        df_filtered['day'] = df_filtered['DateTime'].dt.dayofweek
+                        df_pivot = df_filtered.pivot_table(values='T101', index='day', columns='hour')
+                        plt.figure(figsize=(8, 4), dpi=100)
+                        sns.heatmap(df_pivot, cmap='coolwarm', annot=True, fmt='.2f',
+                                    annot_kws={"size": 6, "color": "black"})
+                        st.pyplot(plt)
+                    else:
+                        st.warning("Heatmap requires 'DateTime' and 'T101' columns.")
+
+                # (D) Boxplot
+                elif plot_type == "Boxplot":
+                    if "DateTime" in df_filtered.columns and "T101" in df_filtered.columns:
+                        df_filtered['day'] = df_filtered['DateTime'].dt.dayofweek
+                        plt.figure(figsize=(8, 4), dpi=100)
+                        sns.boxplot(x='day', y='T101', data=df_filtered)
+                        st.pyplot(plt)
+                    else:
+                        st.warning("Boxplot requires 'DateTime' and 'T101' columns.")
+
+                # (E) Autocorrelation
+                elif plot_type == "Autocorrelation":
+                    from statsmodels.graphics.tsaplots import plot_acf
+                    if "T101" in df_filtered.columns:
+                        plt.figure(figsize=(8, 4), dpi=100)
+                        plot_acf(df_filtered['T101'].dropna(), lags=50)
+                        st.pyplot(plt)
+                    else:
+                        st.warning("Autocorrelation requires 'T101' column.")
+
+                # (F) Seasonality Decomposition
+                elif plot_type == "Seasonality Decomposition":
+                    from statsmodels.tsa.seasonal import seasonal_decompose
+                    if "T101" in df_filtered.columns:
+                        ts_data = df_filtered['T101'].dropna()
+                        if len(ts_data) < 2:
+                            st.warning("Not enough data to perform seasonal decomposition.")
+                        else:
+                            result = seasonal_decompose(ts_data, model='additive', period=365)
+                            plt.figure(figsize=(8, 4), dpi=100)
+                            result.plot()
+                            st.pyplot(plt)
+                    else:
+                        st.warning("Seasonality Decomposition requires 'T101' column.")
 
     # === Concentration branch ===
     else:
@@ -501,3 +562,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
