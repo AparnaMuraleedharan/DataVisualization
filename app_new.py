@@ -325,7 +325,6 @@ def main():
                         "Line Plot",
                         "Rolling Average",
                         "Heatmap",
-                        "Boxplot",
                         "Autocorrelation",
                         "Seasonality Decomposition",
                     ],
@@ -447,22 +446,6 @@ def main():
                         ax.set_xlabel("Hour of Day")
                         ax.set_ylabel("Day of Week (0=Mon)")
                         ax.set_title(f"Heatmap of {col0}")
-                        st.pyplot(fig)
-
-                # ---------- (D) Boxplot ----------
-                elif ptype == "Boxplot":
-                    if len(cols) == 0:
-                        st.warning("Select at least one column.")
-                    else:
-                        col0 = cols[0]
-                        df_box = df2[["Time", col0]].dropna().copy()
-                        df_box["day"] = df_box["Time"].dt.dayofweek
-
-                        fig, ax = plt.subplots(figsize=(8, 4), dpi=100)
-                        sns.boxplot(data=df_box, x="day", y=col0, ax=ax)
-                        ax.set_xlabel("Day of Week (0=Mon)")
-                        ax.set_ylabel(col0)
-                        ax.set_title(f"Boxplot of {col0} by day of week")
                         st.pyplot(fig)
 
                 # ---------- (E) Autocorrelation ----------
@@ -602,3 +585,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
