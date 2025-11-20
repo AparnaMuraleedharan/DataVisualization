@@ -564,11 +564,11 @@ def main():
     if feat.empty:
         st.info("No Features file found.")
     else:
-        q = st.text_input("SensorName:")
+        q = st.text_input("SensorActuatorName:")
         if st.button("Search Features"):
-            if {"SensorName", "Description"}.issubset(feat.columns):
+            if {"SensorActuatorName", "Description"}.issubset(feat.columns):
                 res = feat[
-                    feat["SensorName"].str.upper()
+                    feat["SensorActuatorName"].str.upper()
                     == q.strip().upper()
                 ]
             else:
@@ -577,7 +577,7 @@ def main():
             if not res.empty:
                 for _, r in res.iterrows():
                     st.markdown(
-                        f"**{r['SensorName']}**: {r['Description']}"
+                        f"**{r['SensorActuatorName']}**: {r['Description']}"
                     )
             else:
                 st.warning("No matches found.")
@@ -585,4 +585,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
