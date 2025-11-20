@@ -1,4 +1,4 @@
-SensorName,Description
+SensorActuatorName,Description
 T101,Temperature Sensor in Column 1
 T102,Temperature Sensor in Column 1
 T104,Temperature Sensor in Column 1
@@ -19,4 +19,26 @@ M103,Bottom Product Flow Rate
 R,Reflux Ratio
 Time,Time in HH:MM:SS
 DateTime,DateTime in DD/MM/YYYY HH:MM:SS for experiments that run overnight and over multiple days
-Date,Date 
+A101,Feed Tank Mass
+M101,Feed Flow Rate
+AV101,"Automatic nitrogen valve - True: On, False: Off"
+AV103,"Automatic reflux divider valve - True: On, False: Off"
+AV104,"Automatic valve to distillate receiver - True: On, False: Off"
+AV105,"Automatic nitrogen valve pressure control - True: On, False: Off"
+AV106,"Automatic valve for pressure control - True: On, False: Off"
+AV107,"Automatic cooling water valve TH103 - True: On, False: Off"
+AV108,"Automatic cooling water valve TH102 - True: On, False: Off"
+AV109,"Automatic cooling water valve for E108 and E208 - True: On, False: Off"
+TV101,Automatic throttle valve nitrogen for pressure control - Percentage of opening (0 to 100)
+TH101_SetPoint,Set point of Thermostat TH101
+TH101_Temperature,Temperature of Thermostat TH101
+TH101_Start,Set point of Thermostat TH102
+TH101_Status,Temperature of Thermostat TH102
+TH102_SetPoint,Set point of Thermostat TH103
+TH102_Temperature,Temperature of Thermostat TH103
+TH102_Start,"Switch on Status TH101, FALSE = Stop. TRUE = Start"
+TH102_Status,"Error of TH101, FALSE = no error. TRUE = error"
+TH103_SetPoint,"Switch on Status TH102, FALSE = Stop. TRUE = Start"
+TH103_Temperature,"Error of TH102, FALSE = no error. TRUE = error"
+TH103_Start,"Switch on Status TH103, FALSE = Stop. TRUE = Start"
+TH103_Status,"Error of TH103, FALSE = no error. TRUE = error"

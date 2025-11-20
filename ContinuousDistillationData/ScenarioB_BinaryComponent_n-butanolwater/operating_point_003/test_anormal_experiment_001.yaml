@@ -1,0 +1,158 @@
+Head Pressure C1: 969 mbar
+Head Pressure: 967 mbar
+Feed Flow Rate to C1: 4 kg/hr
+Feed Composition to C1: 0.925 water, 0.075 n-butanol by mass
+Feed Composition to C2: 0.801 n-butanol, 0.199 water
+anomalies:
+  - class: ConfirmedAnomaly
+    id: SCB-BUWA-OP003TA001A001
+    hasBeginning: '13:47:00'
+    hasEnd: '14:25:00'
+    hasCategory: transient
+    hasRecoveryAction: Reduce bottoms flow rate in C2, and/or increase feed input flow
+      rate
+    Perturbation: null
+    PerturbationMode:
+      label: Unstable level in reboiler
+      hasBeginning: null
+      hasEnd: null
+      happenedAt:
+        System:
+          label: Differential pressure sensor reboiler in column 2
+          id: PDIC201
+          hasFunction: Measure differential pressure of liquid in the column 2 reboiler
+          hasNormalState: automatic, closed-loop controlled
+          hasAnomalousState: automatic, closed-loop controlled
+    wasOriginatedBy:
+    - Observation:
+        id: Observation001_SCB-BUWA-OP003TA001A001
+        label: Reboiler level unstable in column 2
+        madeBySensor:
+          Sensor:
+            id: PDIC201
+        observedProperty:
+          ObservableProperty: Reboiler differential pressure
+        hasFeatureOfInterest:
+          FeatureOfInterest: Column 2 reboiler
+    - Observation:
+        id: Observation002_SCB-BUWA-OP003TA001A001
+        label: Bottoms flow rate drop in column 2
+        madeBySensor:
+          Sensor:
+            id: M203, A203
+        observedProperty:
+          ObservableProperty: Bottoms C2 mass flow rate, Bottoms C2 mass
+        hasFeatureOfInterest:
+          FeatureOfInterest: Bottoms product stream
+
+  - class: ConfirmedAnomaly
+    id: SCB-BUWA-OP003TA001A002
+    hasBeginning: '15:50:00'
+    hasEnd: '16:10:00'
+    hasCategory: transient
+    hasRecoveryAction: Reduce bottoms flow rate in C2, and/or increase feed input flow
+      rate
+    Perturbation: null
+    PerturbationMode:
+      label: Unstable level in reboiler
+      hasBeginning: null
+      hasEnd: null
+      happenedAt:
+        System:
+          label: Differential pressure sensor reboiler in column 2
+          id: PDIC201
+          hasFunction: Measure differential pressure of liquid in the column 2 reboiler
+          hasNormalState: automatic, closed-loop controlled
+          hasAnomalousState: automatic, closed-loop controlled
+    wasOriginatedBy:
+    - Observation:
+        id: Observation001_SCB-BUWA-OP003TA001A002
+        label: Reboiler level unstable in column 2
+        madeBySensor:
+          Sensor:
+            id: PDIC201
+        observedProperty:
+          ObservableProperty: Reboiler differential pressure
+        hasFeatureOfInterest:
+          FeatureOfInterest: Column 2 reboiler
+    - Observation:
+        id: Observation002_SCB-BUWA-OP003TA001A002
+        label: Bottoms flow rate drop in column 2
+        madeBySensor:
+          Sensor:
+            id: M203, A203
+        observedProperty:
+          ObservableProperty: Bottoms C2 mass flow rate, Bottoms C2 mass
+        hasFeatureOfInterest:
+          FeatureOfInterest: Bottoms product stream
+
+  - class: ConfirmedAnomaly
+    id: SCB-BUWA-OP003TA001A003
+    hasBeginning: '19:41:00'
+    hasEnd: '19:56:00'
+    hasCategory: transient
+    hasRecoveryAction: Adjust pump power back to original value
+    Perturbation: Pump power reduced
+    PerturbationMode:
+      label: Unstable level in reboiler
+      hasBeginning: '18:36:00'
+      hasEnd: '19:46:00'
+      happenedAt:
+        System:
+          label: Differential pressure sensor reboiler in column 2
+          id: PDIC201
+          hasFunction: Measure differential pressure of liquid in the column 2 reboiler
+          hasNormalState: manual, open-loop controlled
+          hasAnomalousState: manual, open-loop controlled
+    wasOriginatedBy:
+    - Observation:
+        id: Observation001_SCB-BUWA-OP003TA001A003
+        label: Reboiler level unstable in column 2
+        madeBySensor:
+          Sensor:
+            id: PDIC201
+        observedProperty:
+          ObservableProperty: Reboiler differential pressure
+        hasFeatureOfInterest:
+          FeatureOfInterest: Column 2 reboiler
+    - Observation:
+        id: Observation002_SCB-BUWA-OP003TA001A003
+        label: Bottoms flow rate drop in column 2
+        madeBySensor:
+          Sensor:
+            id: M203, A203
+        observedProperty:
+          ObservableProperty: Bottoms C2 mass flow rate, Bottoms C2 mass
+        hasFeatureOfInterest:
+          FeatureOfInterest: Bottoms product stream
+
+  - class: ConfirmedAnomaly
+    id: SCB-BUWA-OP003TA001A004
+    hasBeginning: '20:00:00'
+    hasEnd: '20:10:00'
+    hasCategory: transient
+    hasRecoveryAction: System automatically recovered
+    Perturbation: null
+    PerturbationMode:
+      label: Pipe for bottom product
+      hasBeginning: null
+      hasEnd: null
+      happenedAt:
+        System:
+          label: Bottoms stream pipeline
+          id: M103, A103
+          hasFunction: Pipeline connecting bottoms pump P102 to buffer vessel A103
+          hasNormalState: automatic, closed-loop controlled
+          hasAnomalousState: automatic, closed-loop controlled
+    wasOriginatedBy:
+      Observation:
+        id: Observation001_SCB-BUWA-OP003TA001A004
+        label: Bottoms flow rate drop in column 1
+        madeBySensor:
+          Sensor:
+            id: M103, A103
+        observedProperty:
+          ObservableProperty: Bottom C1 mass flow rate, Bottom C1 mass
+        hasFeatureOfInterest:
+          FeatureOfInterest: Column 1 bottom stream pipe
+

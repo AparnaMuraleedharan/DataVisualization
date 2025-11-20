@@ -1,0 +1,78 @@
+Feed in kg/h: 7.5
+Pressure: 1398.62
+Feed Temperature in °C: 88.97
+Feed Mass Fraction: OME1-0.3744 OME2-0.2301 OME3-0.0457 OME4-0.0107 OME5-0.0061 OME6-0.0009,
+  MeFo-0.0000 Trioxan-0.0000 MeOH-0.1264 FA-0.1544 WA-0.0523
+Reflux Ratio: 0.5
+Bottom Flow Rate: 0.60
+anomalies:
+  - class: ConfirmedAnomaly
+    id: SCC-OME-OP007TA001A001
+    hasBeginning: '14:03:00'
+    hasEnd: '14:13:00'
+    hasCategory: transient
+    hasRecoveryAction: Manual vent valve is used to release any pressure buildup
+    Perturbation: null
+    PerturbationMode:
+      label: Head pressure sensor unstable
+      hasBeginning: null
+      hasEnd: null
+      happenedAt:
+        System:
+          label: Head pressure sensor
+          id: PIC101
+          hasFunction: Head pressure sensor in column 1 section C106
+          hasNormalState: automatic, closed-loop controlled
+          hasAnomalousState: automatic, closed-loop controlled
+    wasOriginatedBy:
+    - Observation:
+        id: Observation001_SCC-OME-OP007TA001A001
+        label: Head pressure unstable
+        madeBySensor:
+          Sensor:
+            id: PIC101
+        observedProperty:
+          ObservableProperty: Head pressure sensor in column 1
+        hasFeatureOfInterest:
+          FeatureOfInterest: Column 1  top section
+    - Observation:
+        id: Observation002_SCC-OME-OP007TA001A001
+        label: Condesner temperature unstable
+        madeBySensor:
+          Sensor:
+            id: T114
+        observedProperty:
+          ObservableProperty: Temperature sensor section C106
+        hasFeatureOfInterest:
+          FeatureOfInterest: Column 1  top section
+
+  - class: ConfirmedAnomaly
+    id: SCC-OME-OP007TA001A002
+    hasBeginning: '15:53:00'
+    hasEnd: '18:50:00'
+    hasCategory: transient
+    hasRecoveryAction: Automatic control stopped and manual control until stabilised
+    Perturbation: null
+    PerturbationMode:
+      label: Unstable level in reboiler
+      hasBeginning: null
+      hasEnd: null
+      happenedAt:
+        System:
+          label: Differential pressure sensor reboiler
+          id: PD101
+          hasFunction: Reboiler differential pressure
+          hasNormalState: automatic, closed-loop controlled
+          hasAnomalousState: automatic, closed-loop controlled
+    wasOriginatedBy:
+      Observation:
+        id: Observation001_SCC-OME-OP007TA001A002
+        label: Reboiler level unstable
+        madeBySensor:
+          Sensor:
+            id: PD101
+        observedProperty:
+          ObservableProperty: Reboiler differential pressure
+        hasFeatureOfInterest:
+          FeatureOfInterest: Column 1  reboiler
+

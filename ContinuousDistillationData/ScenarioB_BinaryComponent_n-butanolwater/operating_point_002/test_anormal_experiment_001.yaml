@@ -1,0 +1,77 @@
+Head Pressure C1: 969 mbar
+Head Pressure: 967 mbar
+Feed Flow Rate to C1: 4 kg/hr
+Feed Composition to C1: 0.925 water, 0.075 n-butanol by mass
+Feed Composition to C2: 0.801 n-butanol, 0.199 water
+anomalies:
+  - class: ConfirmedAnomaly
+    id: SCB-BUWA-OP002TA001A001
+    hasBeginning: '16:58:00'
+    hasEnd: '17:29:00'
+    hasCategory: transient
+    hasRecoveryAction: System automatically recovered
+    Perturbation: null
+    PerturbationMode:
+      label: Unreliable noisy sensor output
+      hasBeginning: null
+      hasEnd: null
+      happenedAt:
+        System:
+          label: Temperature sensor  in column 2 section
+          id: T212
+          hasFunction: Measure temperature in the column 2 section C206
+          hasNormalState: automatic, closed-loop controlled
+          hasAnomalousState: automatic, closed-loop controlled
+    wasOriginatedBy:
+      Observation:
+        id: Observation001_SCB-BUWA-OP002TA001A001
+        label: Temperature sensors drop
+        madeBySensor:
+          Sensor:
+            id: T212
+        observedProperty:
+          ObservableProperty: Column 2 temperatures
+        hasFeatureOfInterest:
+          FeatureOfInterest: Column 2 top sections
+
+  - class: ConfirmedAnomaly
+    id: SCB-BUWA-OP002TA001A002
+    hasBeginning: '19:48:00'
+    hasEnd: '20:06:00'
+    hasCategory: transient
+    hasRecoveryAction: Reduce bottoms flow rate in C2, and/or increase feed input flow
+      rate
+    Perturbation: null
+    PerturbationMode:
+      label: Unstable level in reboiler
+      hasBeginning: null
+      hasEnd: null
+      happenedAt:
+        System:
+          label: Differential pressure sensor reboiler in column 2
+          id: PDIC201
+          hasFunction: Measure differential pressure of liquid in the column 2 reboiler
+          hasNormalState: automatic, closed-loop controlled
+          hasAnomalousState: automatic, closed-loop controlled
+    wasOriginatedBy:
+    - Observation:
+        id: Observation001_SCB-BUWA-OP002TA001A002
+        label: Reboiler level unstable in column 2
+        madeBySensor:
+          Sensor:
+            id: PDIC201
+        observedProperty:
+          ObservableProperty: Reboiler differential pressure
+        hasFeatureOfInterest:
+          FeatureOfInterest: Column 2 reboiler
+    - Observation:
+        id: Observation002_SCB-BUWA-OP002TA001A002
+        label: Bottoms flow rate drop in column 2
+        madeBySensor:
+          Sensor:
+            id: M203, A203
+        observedProperty:
+          ObservableProperty: Bottoms C2 mass flow rate, Bottoms C2 mass
+        hasFeatureOfInterest:
+          FeatureOfInterest: Bottoms product stream
+

@@ -1,16 +1,24 @@
-SensorName,Description
-T101,Temperature Sensor in Column 1
-T102,Temperature Sensor in Column 1
-T104,Temperature Sensor in Column 1
-T106,Temperature Sensor in Column 1
-T108,Temperature Sensor in Column 1
-T110,Temperature Sensor in Column 1
-T112,Temperature Sensor in Column 1
-T114,Temperature Sensor in Column 1
+SensorActuatorName,Description
+T101,Temperature sensor reboiler
+T102,Temperature sensor in C101
+T104,Temperature sensor in C102
+T106,Temperature sensor in C103
+T108,Temperature sensor in C104
+T110,Temperature sensor in C105
+T112,Temperature sensor in C106
+T114,Head temperature sensor
+T115,Temperature sensor in sump product line
 T116,Temperature Sensor of Feed
 PDIC101,Differential Pressure Sensor in Reboiler
 PDIC102,Differential Pressure Sensor in Reboiler
 PIC101,Head Pressure Sensor C1
+TV101,Automatic throttle valve nitrogen for pressure control
+TH101_SetPoint,Set point of Thermostat TH101
+TH101_Temperature,Temperature of Thermostat TH101
+TH102_SetPoint,Set point of Thermostat TH102
+TH102_Temperature,Temperature of Thermostat TH102
+TH103_SetPoint,Set point of Thermostat TH103
+TH103_Temperature,Temperature of Thermostat TH103
 A104,Decanter Tank Mass
 M104,Decanter Net Flow Rate
 A101,Feed Tank Mass
@@ -21,21 +29,56 @@ A107,Decanter Lower Phase Tank Mass
 M107,Decanter Lower Phase Net Flow Rate
 M103,Bottoms Product C1 Flow Rate
 M106,Decanter Upper Phase Net Flow Rate
-T201,Temperature Sensor in Column 2
-T202,Temperature Sensor in Column 2
-T204,Temperature Sensor in Column 2
-T206,Temperature Sensor in Column 2
-T208,Temperature Sensor in Column 2
-T210,Temperature Sensor in Column 2
-T212,Temperature Sensor in Column 2
-PDIC201,Differential Pressure Sensor in C1 Reboiler
-PDIC202,Differential Pressure Sensor in C1 Reboiler
+AV101,Automatic nitrogen valve
+AV104,Automatic valve to distillate receiver
+AV105,Automatic nitrogen valve pressure control
+AV106,Automatic valve for pressure control
+AV107,Automatic cooling water valve TH103
+AV108,Automatic cooling water valve TH102
+AV109,Automatic cooling water valve for E108 and E208
+FI101_Pulses,Flow sensor coolant
+TH101_Start,"Switch on Status TH101, FALSE = Stop. TRUE = Start"
+TH101_Status,"Error of TH101, FALSE = no error. TRUE = error"
+TH102_Start,"Switch on Status TH102, FALSE = Stop. TRUE = Start"
+TH102_Status,"Error of TH102, FALSE = no error. TRUE = error"
+TH103_Start,"Switch on Status TH103, FALSE = Stop. TRUE = Start"
+TH103_Status,"Error of TH103, FALSE = no error. TRUE = error"
+T_ERROR_0+C1,"Temperature sensor error in C1,  FALSE = No error. TRUE = error."
+T201,Temperature sensor reboiler C2
+T202,Temperature sensor in C201
+T204,Temperature sensor in C202
+T206,Temperature sensor in C203
+T208,Temperature sensor in C204
+T210,Temperature sensor in C205
+T212,Temperature sensor in C206
+T215,Temperature sensor in sump product line
+PDIC201,Differential Pressure Sensor in Reboiler
+PDIC202,Differential Pressure Sensor in Reboiler
 PIC201,Head Pressure Sensor C2
+TV201,Automatic throttle valve nitrogen for pressure control
+TH201_SetPoint,Set point of Thermostat TH201
+TH201_Temperature,Temperature of Thermostat TH201
+TH202_SetPoint,Set point of Thermostat TH202
+TH202_Temperature,Temperature of Thermostat TH202
+TH203_SetPoint,Set point of Thermostat TH203
+TH203_Temperature,Temperature of Thermostat TH203
 A203,Bottoms Product C2 Tank Mass
 M203,Bottoms Product C2 Flow Rate
+AV201,Automatic nitrogen valve
+AV203,Automatic reflux divider
+AV205,Automatic vacuum valve
+AV207,Automatic cooling water valve TH203
+AV208,Automatic cooling water valve TH202
+FI201_Pulses,Flow sensor coolant TH202
+TH201_Start,"Switch on Status TH201, FALSE = Stop. TRUE = Start"
+TH201_Status,"Error of TH201, FALSE = no error. TRUE = error"
+TH202_Start,"Switch on Status TH202, FALSE = Stop. TRUE = Start"
+TH202_Status,"Error of TH202, FALSE = no error. TRUE = error"
+TH203_Start,"Switch on Status TH203, FALSE = Stop. TRUE = Start"
+TH203_Status,"Error of TH203, FALSE = no error. TRUE = error"
+T_ERROR_0_C2,"Temperature sensor error in C2,  FALSE = No error. TRUE = error."
 F101,Flow Meter Decanter Lower Phase
 F102,Flow Meter Distillate C1
 F103,Flow Meter Distillate C2
 F104,Flow Meter Feed C1
-R,Reflux Ratio
 Time,Time in HH:MM:SS

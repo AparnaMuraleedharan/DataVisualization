@@ -1,0 +1,149 @@
+Head Pressure C1: 984 mbar
+Head Pressure: 983 mbar
+Feed Flow Rate to C1: 4.5 kg/hr
+Feed Composition to C1: 0.9125 water, 0.0875 n-butanol by mass
+Feed Composition to C2: 0.21 water, 0.79 n-butanol
+anomalies:
+  - class: ConfirmedAnomaly
+    id: SCB-BUWA-OP005TA001A001
+    hasBeginning: '17:30:00'
+    hasEnd: '17:53:00'
+    hasCategory: transient
+    hasRecoveryAction: Reduce bottoms flow rate in C2, and/or increase feed input flow
+      rate
+    Perturbation: null
+    PerturbationMode:
+      label: Unstable level in reboiler
+      hasBeginning: null
+      hasEnd: null
+      happenedAt:
+        System:
+          label: Differential pressure sensor reboiler in column 2
+          id: PDIC201
+          hasFunction: Measure differential pressure of liquid in the column 2 reboiler
+          hasNormalState: automatic, closed-loop controlled
+          hasAnomalousState: automatic, closed-loop controlled
+    wasOriginatedBy:
+      Observation:
+        id: Observation001_SCB-BUWA-OP005TA001A001
+        label: Reboiler level unstable in column 2
+        madeBySensor:
+          Sensor:
+            id: PDIC201
+        observedProperty:
+          ObservableProperty: Reboiler differential pressure
+        hasFeatureOfInterest:
+          FeatureOfInterest: Column 2 reboiler
+
+  - class: ConfirmedAnomaly
+    id: SCB-BUWA-OP005TA001A002
+    hasBeginning: '17:53:00'
+    hasEnd: '18:43:00'
+    hasCategory: transient
+    hasRecoveryAction: System automatically recovered
+    Perturbation: null
+    PerturbationMode:
+      label: Unreliable noisy sensor output
+      hasBeginning: null
+      hasEnd: null
+      happenedAt:
+        System:
+          label: Temperature sensors in column 2 sections
+          id: T208, T210, T212
+          hasFunction: Measure temperature at different locations within the column 2  C204,
+            C205
+          hasNormalState: automatic, closed-loop controlled
+          hasAnomalousState: automatic, closed-loop controlled
+    wasOriginatedBy:
+      Observation:
+        id: Observation001_SCB-BUWA-OP005TA001A002
+        label: Temperature sensors drop
+        madeBySensor:
+          Sensor:
+            id: T208, T210, T212
+        observedProperty:
+          ObservableProperty: Column 2 temperatures
+        hasFeatureOfInterest:
+          FeatureOfInterest: Column 2 top sections
+
+  - class: ConfirmedAnomaly
+    id: SCB-BUWA-OP005TA001A003
+    hasBeginning: '19:43:00'
+    hasEnd: '19:51:00'
+    hasCategory: transient
+    hasRecoveryAction: System automatically recovered
+    Perturbation: null
+    PerturbationMode:
+      label: Unreliable noisy sensor output
+      hasBeginning: null
+      hasEnd: null
+      happenedAt:
+        System:
+          label: Temperature sensor in column 1
+          id: T112
+          hasFunction: Measure temperature at different locations within the column 1
+            c105
+          hasNormalState: automatic, closed-loop controlled
+          hasAnomalousState: automatic, closed-loop controlled
+    wasOriginatedBy:
+      Observation:
+        id: Observation001_SCB-BUWA-OP005TA001A003
+        label: Temperature sensors drop
+        madeBySensor:
+          Sensor:
+            id: T112
+        observedProperty:
+          ObservableProperty: Column 1 temperature
+        hasFeatureOfInterest:
+          FeatureOfInterest: Column 1 temperature
+
+  - class: ConfirmedAnomaly
+    id: SCB-BUWA-OP005TA001A004
+    hasBeginning: '19:44:00'
+    hasEnd: '19:56:00'
+    hasCategory: transient
+    hasRecoveryAction: Turn valve back to fully open position
+    Perturbation: Manual hand valve partially closed
+    PerturbationMode:
+      label: Pipe for feed to column 1
+      hasBeginning: '19:40:00'
+      hasEnd: '19:50:00'
+      happenedAt:
+        System:
+          label: Feed stream pipeline
+          id: M101, A101
+          hasFunction: Pipeline connecting feed to the column 1
+          hasNormalState: manual, open-loop controlled
+          hasAnomalousState: manual, open-loop controlled
+    wasOriginatedBy:
+    - Observation:
+        id: Observation001_SCB-BUWA-OP005TA001A004
+        label: Feed flow rate drop
+        madeBySensor:
+          Sensor:
+            id: M101, A101
+        observedProperty:
+          ObservableProperty: Feed flow rate, Feed mass
+        hasFeatureOfInterest:
+          FeatureOfInterest: Pipe for feed to column 1
+    - Observation:
+        id: Observation002_SCB-BUWA-OP005TA001A004
+        label: Temperature sensors unstable
+        madeBySensor:
+          Sensor:
+            id: T108, T106
+        observedProperty:
+          ObservableProperty: Column 1 temperature
+        hasFeatureOfInterest:
+          FeatureOfInterest: Column 1 mid sections
+    - Observation:
+        id: Observation003_SCB-BUWA-OP005TA001A004
+        label: Reboiler level unstable in column 1
+        madeBySensor:
+          Sensor:
+            id: PDIC101
+        observedProperty:
+          ObservableProperty: Reboiler differential pressure
+        hasFeatureOfInterest:
+          FeatureOfInterest: Column 1 reboiler
+

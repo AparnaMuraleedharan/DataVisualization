@@ -1,0 +1,229 @@
+Head Pressure: 1250 mbar
+Feed Flow Rate: 5 kg/hr
+Reflux Ratio: 0.5
+anomalies:
+  - class: ConfirmedAnomaly
+    id: SCA-WA-OP003TA001A001
+    hasBeginning: '14:36:00'
+    hasEnd: '14:52:00'
+    hasCategory: transient
+    hasRecoveryAction: Turn valve back to fully open position
+    Perturbation: Manual hand valve partially closed
+    PerturbationMode:
+      label: System mass balance not satisfied
+      hasBeginning: null
+      hasEnd: null
+      happenedAt:
+        System:
+          label: Feed stream pipeline
+          id: M101, A101
+          hasFunction: Pipeline connecting feed to the column 1
+          hasNormalState: automatic, manually controlled
+          hasAnomalousState: manual, manually controlled
+      hasLocalEffect:
+        LocalEffect:
+          label: Decreasing flow rate of feed
+    wasOriginatedBy:
+    - Observation:
+        id: Observation001_SCA-WA-OP003TA001A001
+        label: Feed flow rate drop
+        madeBySensor:
+          Sensor:
+            id: M101
+        observedProperty:
+          ObservableProperty: Feed flow rate
+        hasFeatureOfInterest:
+          FeatureOfInterest: Feed pipe to column 1
+    - Observation:
+        id: Observation002_SCA-WA-OP003TA001A001
+        label: Temperature sensor increase
+        madeBySensor:
+          Sensor:
+            id: T106, T108
+        observedProperty:
+          ObservableProperty: Temperature
+        hasFeatureOfInterest:
+          FeatureOfInterest: Column 1 mid sections
+    - Observation:
+        id: Observation003_SCA-WA-OP003TA001A001
+        label: Reboiler level drop
+        madeBySensor:
+          Sensor:
+            id: PDIC101
+        observedProperty:
+          ObservableProperty: Differential pressure reboiler
+        hasFeatureOfInterest:
+          FeatureOfInterest: Column 1  reboiler
+
+  - class: ConfirmedAnomaly
+    id: SCA-WA-OP003TA001A002
+    hasBeginning: '14:36:00'
+    hasEnd: '14:52:00'
+    hasCategory: transient
+    hasRecoveryAction: Turn valve back to fully open position
+    Perturbation: Manual hand valve partially closed
+    PerturbationMode:
+      label: System mass balance not satisfied
+      hasBeginning: null
+      hasEnd: null
+      happenedAt:
+        System:
+          label: Differential pressure sensor reboiler
+          id: PDIC101
+          hasFunction: Measure differential pressure of liquid in the reboiler
+          hasNormalState: automatic, closed-loop controlled
+          hasAnomalousState: manual, open-loop controlled
+      hasLocalEffect:
+        LocalEffect:
+          label: Unstable level in reboiler
+    wasOriginatedBy:
+    - Observation:
+        id: Observation001_SCA-WA-OP003TA001A002
+        label: Reboiler level drop
+        madeBySensor:
+          Sensor:
+            id: PDIC101
+        observedProperty:
+          ObservableProperty: Differential pressure reboiler
+        hasFeatureOfInterest:
+          FeatureOfInterest: Column 1  reboiler
+    - Observation:
+        id: Observation002_SCA-WA-OP003TA001A002
+        label: Bottoms flow rate decreasing
+        madeBySensor:
+          Sensor:
+            id: M103,A103
+        observedProperty:
+          ObservableProperty: Bottoms flow rate
+        hasFeatureOfInterest:
+          FeatureOfInterest: Bottoms stream pipe
+
+  - class: ConfirmedAnomaly
+    id: SCA-WA-OP003TA001A003
+    hasBeginning: '11:33:00'
+    hasEnd: '11:48:00'
+    hasCategory: transient
+    hasRecoveryAction: Not available, system automatically recovered
+    Perturbation: null
+    PerturbationMode:
+      label: Unstable level in reboiler
+      hasBeginning: null
+      hasEnd: null
+      happenedAt:
+        System:
+          label: Differential pressure sensor reboiler
+          id: PDIC101
+          hasFunction: Measure differential pressure of liquid in the reboiler
+          hasNormalState: automatic, closed-loop controlled
+          hasAnomalousState: manual, open-loop controlled
+      hasLocalEffect:
+        LocalEffect:
+          label: Unstable level in reboiler
+    wasOriginatedBy:
+      Observation:
+        id: Observation001_SCA-WA-OP003TA001A003
+        label: Reboiler level unstable
+        madeBySensor:
+          Sensor:
+            id: PDIC101
+        observedProperty:
+          ObservableProperty: Differential pressure reboiler
+        hasFeatureOfInterest:
+          FeatureOfInterest: Column 1 reboiler
+
+  - class: ConfirmedAnomaly
+    id: SCA-WA-OP003TA001A004
+    hasBeginning: '12:24:00'
+    hasEnd: '12:34:00'
+    hasCategory: transient
+    hasRecoveryAction: Turn valve back to fully open position
+    Perturbation: Manual hand valve partially closed
+    PerturbationMode:
+      label: Unstable level in reboiler
+      hasBeginning: null
+      hasEnd: null
+      happenedAt:
+        System:
+          label: Feed stream pipeline
+          id: M101, A101
+          hasFunction: Pipeline connecting feed to the column 1
+          hasNormalState: automatic, closed-loop controlled
+          hasAnomalousState: manual, manually controlled
+      hasLocalEffect:
+        LocalEffect:
+          label: Decreasing flow rate of feed
+    wasOriginatedBy:
+    - Observation:
+        id: Observation001_SCA-WA-OP003TA001A004
+        label: Feed flow rate drop
+        madeBySensor:
+          Sensor:
+            id: M101, A101
+        observedProperty:
+          ObservableProperty: Feed flow rate
+        hasFeatureOfInterest:
+          FeatureOfInterest: Feed pipe to column 1
+    - Observation:
+        id: Observation002_SCA-WA-OP003TA001A004
+        label: Temperature sensor increase
+        madeBySensor:
+          Sensor:
+            id: T106, T108
+        observedProperty:
+          ObservableProperty: Temperature
+        hasFeatureOfInterest:
+          FeatureOfInterest: Column 1 mid sections
+    - Observation:
+        id: Observation003_SCA-WA-OP003TA001A004
+        label: Reboiler level drop
+        madeBySensor:
+          Sensor:
+            id: PDIC101
+        observedProperty:
+          ObservableProperty: Differential pressure reboiler
+        hasFeatureOfInterest:
+          FeatureOfInterest: Column 1 reboiler
+
+  - class: ConfirmedAnomaly
+    id: SCA-WA-OP003TA001A005
+    hasBeginning: '13:09:00'
+    hasEnd: '13:24:00'
+    hasCategory: transient
+    hasRecoveryAction: Hand valve released for venting excess pressure
+    Perturbation: null
+    PerturbationMode:
+      label: Unreliable noisy sensor output
+      hasBeginning: null
+      hasEnd: null
+      happenedAt:
+        System:
+          label: Pressure sensor in column 1
+          id: PIC101
+          hasFunction: Measure pressure at the top of the column
+          hasNormalState: automatic, closed-loop controlled
+          hasAnomalousState: automatic, closed-loop controlled
+      hasLocalEffect:
+        LocalEffect:
+          label: Increase in condenser temperature
+    wasOriginatedBy:
+    - Observation:
+        id: Observation001_SCA-WA-OP003TA001A005
+        label: Head pressure sudden rise
+        madeBySensor:
+          Sensor:
+            id: PIC101
+        observedProperty:
+          ObservableProperty: Head pressure
+        hasFeatureOfInterest:
+          FeatureOfInterest: Column 1 top sections
+    - Observation:
+        id: Observation002_SCA-WA-OP003TA001A005
+        label: Condenser temperature increase
+        madeBySensor:
+          Sensor:
+            id: T114
+        observedProperty:
+          ObservableProperty: Condenser temperature
+        hasFeatureOfInterest:
+          FeatureOfInterest: Condenser
+

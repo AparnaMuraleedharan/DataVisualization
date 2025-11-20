@@ -1,0 +1,37 @@
+Head Pressure: 1350 mbar
+Feed Flow Rate: 5.5 kg/hr
+Reflux Ratio: 0.5
+anomalies:
+  - class: ConfirmedAnomaly
+    id: SCA-WA-OP004TA001A001
+    hasBeginning: 00:00:00
+    hasEnd: 09:40:00
+    hasCategory: permanent
+    hasRecoveryAction: No recovery, stop experiment
+    Perturbation: null
+    PerturbationMode:
+      label: Reduced liquid in distillate vessel B102
+      hasBeginning: null
+      hasEnd: null
+      happenedAt:
+        System:
+          label: Distillate stream pipeline
+          id: M102, A102
+          hasFunction: Pipeline connecting distillate from condensor E104 to buffer vessel
+          hasNormalState: automatic, closed-loop controlled
+          hasAnomalousState: automatic, closed-loop controlled
+      hasLocalEffect:
+        LocalEffect:
+          label: Decreasing flow rate of distillate
+    wasOriginatedBy:
+      Observation:
+        id: Observation001_SCA-WA-OP004TA001A001
+        label: Distillate flow rate drop
+        madeBySensor:
+          Sensor:
+            id: M102
+        observedProperty:
+          ObservableProperty: Distillate flow rate
+        hasFeatureOfInterest:
+          FeatureOfInterest: Distillate stream pipe
+

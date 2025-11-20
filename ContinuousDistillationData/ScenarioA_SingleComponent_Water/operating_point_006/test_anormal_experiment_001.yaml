@@ -1,0 +1,80 @@
+Head Pressure: 1400 mbar
+Feed Flow Rate: 6 kg/hr
+Reflux Ratio: 0.5
+anomalies:
+  - class: ConfirmedAnomaly
+    id: SCA-WA-OP006TA001A001
+    hasBeginning: 02:44:00
+    hasEnd: 08:59:00
+    hasCategory: transient
+    hasRecoveryAction: Adjust overflow pipe height
+    Perturbation: Overflow pipe configuration changed manuallu
+    PerturbationMode:
+      label: Reduced liquid in bottom vessel B103
+      hasBeginning: null
+      hasEnd: null
+      happenedAt:
+        System:
+          label: Bottoms stream pipeline
+          id: M103, A103
+          hasFunction: Pipeline connecting bottoms pump P102 to buffer vessel A103
+          hasNormalState: automatic, closed-loop controlled
+          hasAnomalousState: automatic, closed-loop controlled
+      hasLocalEffect:
+        LocalEffect:
+          label: Decreasing flow rate of bottom product
+    wasOriginatedBy:
+    - Observation:
+        id: Observation001_SCA-WA-OP006TA001A001
+        label: Bottoms flow rate decreasing
+        madeBySensor:
+          Sensor:
+            id: M103
+        observedProperty:
+          ObservableProperty: Bottoms flow rate
+        hasFeatureOfInterest:
+          FeatureOfInterest: Bottom product pipe
+    - Observation:
+        id: Observation002_SCA-WA-OP006TA001A001
+        label: Reboiler differential pressure unstable
+        madeBySensor:
+          Sensor:
+            id: PDIC101
+        observedProperty:
+          ObservableProperty: Differential pressure reboiler
+        hasFeatureOfInterest:
+          FeatureOfInterest: Column 1 reboiler
+
+  - class: ConfirmedAnomaly
+    id: SCA-WA-OP006TA001A002
+    hasBeginning: 00:00:00
+    hasEnd: 04:48:00
+    hasCategory: permanent
+    hasRecoveryAction: No recovery, stop experiment
+    Perturbation: null
+    PerturbationMode:
+      label: Reduced liquid in distillate vessel B102
+      hasBeginning: null
+      hasEnd: null
+      happenedAt:
+        System:
+          label: Distillate stream pipeline
+          id: M102, A102
+          hasFunction: Pipeline connecting distillate from condensor E104 to buffer vessel
+          hasNormalState: automatic, closed-loop controlled
+          hasAnomalousState: automatic, closed-loop controlled
+      hasLocalEffect:
+        LocalEffect:
+          label: Decreasing flow rate of distillate
+    wasOriginatedBy:
+      Observation:
+        id: Observation001_SCA-WA-OP006TA001A002
+        label: Distillate flow rate drop
+        madeBySensor:
+          Sensor:
+            id: M102
+        observedProperty:
+          ObservableProperty: Distillate flow rate
+        hasFeatureOfInterest:
+          FeatureOfInterest: Distillate stream pipe
+

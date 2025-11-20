@@ -1,0 +1,127 @@
+Head Pressure C1: 960 mbar
+Head Pressure C2: 960 mbar
+Feed Flow Rate to C1: 4.2 kg/hr
+Feed Composition to C1: 0.932 water, 0.068 n-butanol
+Feed Composition to C2: 0.094 water, 0.906 n-butanol
+anomalies:
+  - class: ConfirmedAnomaly
+    id: SCB-BUWA-OP001TA002A001
+    hasBeginning: '19:15:00'
+    hasEnd: '19:45:00'
+    hasCategory: transient
+    hasRecoveryAction: Reduce bottoms flow rate in C2, and/or increase feed input flow
+      rate
+    Perturbation: null
+    PerturbationMode:
+      label: Unstable level in reboiler
+      hasBeginning: null
+      hasEnd: null
+      happenedAt:
+        System:
+          label: Differential pressure sensor reboiler in column 2
+          id: PDIC201
+          hasFunction: Measure differential pressure of liquid in the column 2 reboiler
+          hasNormalState: automatic, closed-loop controlled
+          hasAnomalousState: automatic, closed-loop controlled
+    wasOriginatedBy:
+    - Observation:
+        id: Observation001_SCB-BUWA-OP001TA002A001
+        label: Reboiler level unstable in column 2
+        madeBySensor:
+          Sensor:
+            id: PDIC201
+        observedProperty:
+          ObservableProperty: Reboiler differential pressure
+        hasFeatureOfInterest:
+          FeatureOfInterest: Column 2 reboiler
+    - Observation:
+        id: Observation002_SCB-BUWA-OP001TA002A001
+        label: Bottoms flow rate drop in column 2
+        madeBySensor:
+          Sensor:
+            id: M203, A203
+        observedProperty:
+          ObservableProperty: Bottoms C2 mass flow rate, Bottoms C2 mass
+        hasFeatureOfInterest:
+          FeatureOfInterest: Bottoms product stream
+
+  - class: ConfirmedAnomaly
+    id: SCB-BUWA-OP001TA002A002
+    hasBeginning: '20:02:00'
+    hasEnd: '20:32:00'
+    hasCategory: transient
+    hasRecoveryAction: System automatically recovered
+    Perturbation: null
+    PerturbationMode:
+      label: Unreliable noisy sensor output
+      hasBeginning: null
+      hasEnd: null
+      happenedAt:
+        System:
+          label: Temperature sensor in column 1
+          id: T101
+          hasFunction: Measure reboiler temperature column 1 section C101
+          hasNormalState: automatic, closed-loop controlled
+          hasAnomalousState: automatic, closed-loop controlled
+    wasOriginatedBy:
+      Observation:
+        id: Observation001_SCB-BUWA-OP001TA002A002
+        label: Temperature sensors drop
+        madeBySensor:
+          Sensor:
+            id: T101
+        observedProperty:
+          ObservableProperty: Column 1 temperature
+        hasFeatureOfInterest:
+          FeatureOfInterest: Column 1 reboiler
+
+  - class: ConfirmedAnomaly
+    id: SCB-BUWA-OP001TA002A003
+    hasBeginning: '20:50:00'
+    hasEnd: '21:14:00'
+    hasCategory: transient
+    hasRecoveryAction: Turn valve back to fully open position
+    Perturbation: Valve position/opening
+    PerturbationMode:
+      label: Pipe for feed to column 1
+      hasBeginning: '20:40:00'
+      hasEnd: '21:00:00'
+      happenedAt:
+        System:
+          label: Feed stream pipeline
+          id: M101, A101
+          hasFunction: Pipeline connecting feed to the column 1
+          hasNormalState: manual, open-loop controlled
+          hasAnomalousState: manual, open-loop controlled
+    wasOriginatedBy:
+    - Observation:
+        id: Observation001_SCB-BUWA-OP001TA002A003
+        label: Feed flow rate drop
+        madeBySensor:
+          Sensor:
+            id: M101, A101
+        observedProperty:
+          ObservableProperty: Feed flow rate, Feed mass
+        hasFeatureOfInterest:
+          FeatureOfInterest: Pipe for feed to column 1
+    - Observation:
+        id: Observation002_SCB-BUWA-OP001TA002A003
+        label: Reboiler level unstable in column 1
+        madeBySensor:
+          Sensor:
+            id: PDIC101
+        observedProperty:
+          ObservableProperty: Reboiler differential pressure
+        hasFeatureOfInterest:
+          FeatureOfInterest: Column 1 reboiler
+    - Observation:
+        id: Observation003_SCB-BUWA-OP001TA002A003
+        label: Temperature sensors unstable
+        madeBySensor:
+          Sensor:
+            id: T108, T106
+        observedProperty:
+          ObservableProperty: Column 1 temperature
+        hasFeatureOfInterest:
+          FeatureOfInterest: Column 1 mid sections
+

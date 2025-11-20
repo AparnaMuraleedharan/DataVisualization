@@ -1,0 +1,47 @@
+Head Pressure: 1200 mbar
+Feed Flow Rate: 5.5 kg/hr
+Reflux Ratio: 0.5
+anomalies:
+  - class: ConfirmedAnomaly
+    id: SCA-WA-OP001TA001A001
+    hasBeginning: '21:27:00'
+    hasEnd: '22:40:00'
+    hasCategory: transient
+    hasRecoveryAction: Change back overflow pipe height
+    Perturbation: Overflow pipe configuration changed manually
+    PerturbationMode:
+      label: Reduced liquid in bottom vessel B103
+      hasBeginning: null
+      hasEnd: null
+      happenedAt:
+        System:
+          label: Bottoms product vessel
+          id: M103, A103
+          hasFunction: Buffer vessel for collecting bottom product
+          hasNormalState: automatic, closed-loop controlled
+          hasAnomalousState: manual, open-loop controlled
+      hasLocalEffect:
+        LocalEffect:
+          label: Decreasing flow rate of bottom product
+    wasOriginatedBy:
+    - Observation:
+        id: Observation001_SCA-WA-OP001TA001A001
+        label: Bottoms flow rate decreasing
+        madeBySensor:
+          Sensor:
+            id: M103
+        observedProperty:
+          ObservableProperty: Bottoms flow rate
+        hasFeatureOfInterest:
+          FeatureOfInterest: Bottoms stream pipe
+    - Observation:
+        id: Observation002_SCA-WA-OP001TA001A001
+        label: Reboiler level unstable
+        madeBySensor:
+          Sensor:
+            id: PDIC101
+        observedProperty:
+          ObservableProperty: Reboiler differential pressure
+        hasFeatureOfInterest:
+          FeatureOfInterest: Reboiler
+
